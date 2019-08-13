@@ -1,13 +1,6 @@
-/* IIFE : Immediatelly Invoked Function Expression */
+import * as moduloAceitouSalvar from "/scripts/storage/aceitouSalvar.js";
 
-let aceitouSalvar = JSON.parse(localStorage.getItem("aceitouSalvar"));
-
-if( aceitouSalvar === null) {
-    aceitouSalvar = confirm("Aceita salvar suas informações?");
-    localStorage.setItem("aceitouSalvar", aceitouSalvar);
+if( moduloAceitouSalvar.aceitouSalvar === null) {
+    const _aceitouSalvar = confirm("Aceita salvar suas informações?");
+    moduloAceitouSalvar.setAceitouSalvar(_aceitouSalvar);
 }
-
-export default aceitouSalvar;
-
-
-
