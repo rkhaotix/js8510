@@ -9,9 +9,6 @@ if(aceitouSalvar === true) {
         addr = prompt("Endereço inicial?","");
         moduloPagina.setPaginaInicial(addr);
     }
-    
-    $inputEndereco.value = moduloPagina.paginaInicial;
-    $iframeConteudo.src = moduloPagina.paginaInicial;
 }
 
 

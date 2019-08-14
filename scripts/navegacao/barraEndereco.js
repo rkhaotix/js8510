@@ -1,3 +1,5 @@
+import {carregarPagina} from "./carregarPagina.js";
+
 function mudaEnderecoResumido() {
     $inputEndereco.value = $iframeConteudo.contentWindow.location.hostname;
 };
@@ -6,6 +8,13 @@ function mudaEnderecoCompleto() {
     $inputEndereco.value = $iframeConteudo.contentWindow.location.href;
 };
 
-$iframeConteudo.onload = mudaEnderecoResumido;
-$inputEndereco.onfocus = mudaEnderecoCompleto;
-$inputEndereco.onblur = mudaEnderecoResumido;
+function acessaEndereco(event) {
+    if(event.key == "Enter" && $inputEndereco.value !== '') {
+        carregarPagina($inputEndereco.value);
+    }
+}
+
+$iframeConteudo.addEventListener("load", mudaEnderecoResumido);
+$inputEndereco.addEventListener("focus", mudaEnderecoCompleto);
+$inputEndereco.addEventListener("blur", mudaEnderecoResumido);
+$inputEndereco.addEventListener("keyup", acessaEndereco);
