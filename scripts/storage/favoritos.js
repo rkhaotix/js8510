@@ -1,6 +1,8 @@
-export const listaFavoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+const listaFavoritosPrivada = JSON.parse(localStorage.getItem("favoritos")) || [];
+
+export const listaFavoritos = [...listaFavoritosPrivada]; //A sintaxe [...array] cria um novo array explodindo ele e inserindo os elementos no novo
 
 export function salvarFavorito(favorito) {
-        listaFavoritos.push(favorito);
-        localStorage.setItem("favoritos", JSON.stringify(listaFavoritos));
+        listaFavoritosPrivada.push(favorito);
+        localStorage.setItem("favoritos", JSON.stringify(listaFavoritosPrivada));
 }
