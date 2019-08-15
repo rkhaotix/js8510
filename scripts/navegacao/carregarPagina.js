@@ -1,7 +1,20 @@
 import {formatarUrl} from "/scripts/utils.js";
+import { CakeEnderecoInvalidoError } from "/scripts/erros/CakeEnderecoInvalidoError.js";
 
 export function carregarPagina(pagina) {
-    pagina = formatarUrl(pagina);
-    $inputEndereco.value = pagina;
-    $iframeConteudo.src = pagina;
+    try
+    {
+        pagina = formatarUrl(pagina);
+        $inputEndereco.value = pagina;
+        $iframeConteudo.src = pagina;    
+    }
+    catch(e)
+    {
+        if(e instanceof CakeEnderecoInvalidoError) {
+            alert("busca " + e.endereco)
+        }
+        else {
+            throw e;
+        }
+    }
 }

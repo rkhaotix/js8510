@@ -1,8 +1,7 @@
 export function CakeEnderecoInvalidoError(url) {
-    const object = {
-        message: "URL inválida: " + url,
-        __proto__: CakeEnderecoInvalidoError.prototype
-    }
-
+    const object = Error();
+    object.message = "URL inválida: " + url;
+    object.endereco = url;
+    Object.setPrototypeOf(object, CakeEnderecoInvalidoError.prototype);
     return object;
 }
