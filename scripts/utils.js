@@ -1,5 +1,11 @@
+import { CakeEnderecoInvalidoError } from "./erros/CakeEnderecoInvalidoError.js";
+
 export function formatarUrl(url) {
     let urlFmt = url;
+
+    if(url === null || url === "") {
+        return "blank";
+    }
 
     if(typeof url !== "string") {
         const erro = Error(`
@@ -11,8 +17,10 @@ export function formatarUrl(url) {
         );
     }
 
-    if(urlFmt ===  null) {
-        urlFmt = '';
+    const regexp = /[\S]+\.[\S]{2,}(\/[^\/\s]+)*$/
+
+    if(!regexp.test(urlFmt)) {
+        throw CakeEnderecoInvalidoError(urlFmt);
     }
 
     if(urlFmt !== '' && urlFmt.match(/^(.)+(\:)(\/)(\/)/) === null) {
