@@ -16,7 +16,7 @@ $btnFavoritos.addEventListener('click', function(){
     const endereco = $iframeConteudo.contentWindow.location.href;
 
     if(favoritos.possuiFavorito(endereco)) {
-        const favParaRemover = faxvoritos.removerFavorito(endereco);
+        const favParaRemover = favoritos.removerFavorito(endereco);
         $Cake.removeFavorite(favParaRemover);
         marcarBotaoFavorito(false);
         return;
