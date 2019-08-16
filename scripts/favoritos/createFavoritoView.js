@@ -2,8 +2,8 @@ import { carregarPagina } from "/scripts/navegacao/carregarPagina.js";
 
 export class FavoritoView {
     constructor(nome, endereco) {
-        this.nome = nome;
-        this.descricao = endereco || nome;
+        this.nome = nome || endereco;
+        this.descricao = endereco;
         this._endereco = endereco;
         this.onclick = this.onclick.bind(this);
     }
@@ -16,8 +16,8 @@ export class FavoritoView {
 
 export function createFavoritoView(nome, endereco) {
     return {
-        nome: nome,
-        descricao: endereco || nome,
+        nome: nome || endereco,
+        descricao: endereco,
         onclick: function() {
             carregarPagina(endereco);
         }

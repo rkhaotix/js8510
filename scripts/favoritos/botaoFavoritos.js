@@ -14,6 +14,14 @@ $btnFavoritos.addEventListener('click', function(){
     }
 
     const endereco = $iframeConteudo.contentWindow.location.href;
+
+    if(favoritos.possuiFavorito(endereco)) {
+        const favParaRemover = faxvoritos.removerFavorito(endereco);
+        $Cake.removeFavorite(favParaRemover);
+        marcarBotaoFavorito(false);
+        return;
+    }
+
     const nomeFavorito = prompt("Nome do favorito?", $inputEndereco.value) || endereco;
 
     const favParaSalvar = {
@@ -24,4 +32,16 @@ $btnFavoritos.addEventListener('click', function(){
     const favorito = new FavoritoView(nomeFavorito, endereco);
     favoritos.salvarFavorito(favParaSalvar);
     $Cake.addFavorite(favorito);
+    marcarBotaoFavorito(true);
+});
+
+function marcarBotaoFavorito(valor) {
+    const icone = valor ? "cheia" : "vazia";
+    const iconeUrl = `images/libCake/estrela-${icone}.svg`;
+    $btnFavoritos.src=iconeUrl;    
+}
+
+$iframeConteudo.addEventListener("load", function(){
+    const endereco = this.contentWindow.location.href;
+    marcarBotaoFavorito(favoritos.possuiFavorito(endereco));
 });
