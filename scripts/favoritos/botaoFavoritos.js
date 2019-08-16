@@ -1,9 +1,9 @@
 import * as favoritos from "/scripts/storage/favoritos.js";
 import { aceitouSalvar } from "/scripts/storage/aceitouSalvar.js";
-import { createFavoritoView } from "./createFavoritoView.js";
+import { FavoritoView, createFavoritoView } from "./createFavoritoView.js";
 
 for(const fav of favoritos.listaFavoritos) {
-    const favParaExibir = createFavoritoView (fav.nome, fav.endereco);
+    const favParaExibir = new FavoritoView (fav.nome, fav.endereco);
     $Cake.addFavorite(favParaExibir);
 }
 
@@ -21,7 +21,7 @@ $btnFavoritos.addEventListener('click', function(){
         endereco: endereco
     };
 
-    const favorito = createFavoritoView(nomeFavorito, endereco);
+    const favorito = new FavoritoView(nomeFavorito, endereco);
     favoritos.salvarFavorito(favParaSalvar);
     $Cake.addFavorite(favorito);
 });
